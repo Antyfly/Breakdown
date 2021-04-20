@@ -19,9 +19,9 @@ namespace Breakdown
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class Authorization : Window
+    public partial class Customers : Window
     {
-        public Authorization()
+        public Customers()
         {
             InitializeComponent();
             var datasourse = CN.content.Client.ToList();
