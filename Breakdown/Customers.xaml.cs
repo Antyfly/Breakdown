@@ -21,14 +21,42 @@ namespace Breakdown
     /// </summary>
     public partial class Customers : Window
     {
+        public int Page { get; set; } = 0;
         public Customers()
         {
             InitializeComponent();
+            DataContext = this;
+            Update();
+
+        }
+        public void Update()
+        {
+            
             var datasourse = CN.content.Client.ToList();
-            datasourse = datasourse.Take(50).ToList() ;
+            datasourse = datasourse.Skip(Page * 50).Take(50).ToList();
             List.ItemsSource = datasourse;
+        }
+
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            Page++;
+            Update();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Page--;
+            Update();
+        }
+
+        private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
 
+        private void OffersList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
