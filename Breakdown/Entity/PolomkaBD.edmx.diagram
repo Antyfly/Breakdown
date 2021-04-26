@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="autoserviceModel.ServicePhoto" Width="1.5" PointX="7.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="autoserviceModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="autoserviceModel.Tag" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="autoserviceModel.View_1" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="autoserviceModel.FK_Client_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="autoserviceModel.FK_ClientService_Client" ManuallyRouted="false" />
         <AssociationConnector Association="autoserviceModel.FK_DocumentByService_ClientService" ManuallyRouted="false" />
@@ -29,6 +28,7 @@
         <AssociationConnector Association="autoserviceModel.TagOfClient" ManuallyRouted="false" />
         <AssociationConnector Association="autoserviceModel.FK_ClientService_Service" />
         <AssociationConnector Association="autoserviceModel.FK_ServicePhoto_Service" />
+        <EntityTypeShape EntityType="autoserviceModel.Svodka" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

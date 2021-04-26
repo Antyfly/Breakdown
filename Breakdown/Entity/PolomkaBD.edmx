@@ -138,27 +138,26 @@
           <Property Name="TagID" Type="int" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "autoservice.dbo.View_1" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="View_1">
+предупреждение 6002: В таблице или представлении "autoservice.dbo.Svodka" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Svodka">
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="FirstName" />
             <PropertyRef Name="LastName" />
             <PropertyRef Name="RegistrationDate" />
             <PropertyRef Name="Phone" />
-            <PropertyRef Name="GenderCode" />
-            <PropertyRef Name="StartTime" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
           <Property Name="Birthday" Type="date" />
-          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Expr1" Type="datetime" />
+          <Property Name="Expr2" Type="int" />
         </EntityType>
         <Association Name="FK_AttachedProduct_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
@@ -362,19 +361,20 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TagOfClient" EntityType="Self.TagOfClient" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="Svodka" EntityType="Self.Svodka" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [View_1].[ID] AS [ID], 
-    [View_1].[FirstName] AS [FirstName], 
-    [View_1].[LastName] AS [LastName], 
-    [View_1].[Patronymic] AS [Patronymic], 
-    [View_1].[Birthday] AS [Birthday], 
-    [View_1].[RegistrationDate] AS [RegistrationDate], 
-    [View_1].[Email] AS [Email], 
-    [View_1].[Phone] AS [Phone], 
-    [View_1].[GenderCode] AS [GenderCode], 
-    [View_1].[StartTime] AS [StartTime]
-    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+    [Svodka].[ID] AS [ID], 
+    [Svodka].[FirstName] AS [FirstName], 
+    [Svodka].[LastName] AS [LastName], 
+    [Svodka].[Patronymic] AS [Patronymic], 
+    [Svodka].[Birthday] AS [Birthday], 
+    [Svodka].[Email] AS [Email], 
+    [Svodka].[RegistrationDate] AS [RegistrationDate], 
+    [Svodka].[Phone] AS [Phone], 
+    [Svodka].[Name] AS [Name], 
+    [Svodka].[Expr1] AS [Expr1], 
+    [Svodka].[Expr2] AS [Expr2]
+    FROM [dbo].[Svodka] AS [Svodka]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_AttachedProduct_Product" Association="Self.FK_AttachedProduct_Product">
             <End Role="Product" EntitySet="Product" />
@@ -445,7 +445,7 @@
           <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="GenderCode" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="true" />
           <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
           <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Client" FromRole="Client" ToRole="ClientService" />
@@ -478,7 +478,7 @@
           <Key>
             <PropertyRef Name="Code" />
           </Key>
-          <Property Name="Code" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="true" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
         </EntityType>
@@ -570,27 +570,6 @@
           <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Color" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.TagOfClient" FromRole="Tag" ToRole="Client" />
-        </EntityType>
-        <EntityType Name="View_1">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="LastName" />
-            <PropertyRef Name="RegistrationDate" />
-            <PropertyRef Name="Phone" />
-            <PropertyRef Name="GenderCode" />
-            <PropertyRef Name="StartTime" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="DateTime" Precision="0" />
-          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Client_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -697,7 +676,6 @@
           <EntitySet Name="ServicePhoto" EntityType="Self.ServicePhoto" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
-          <EntitySet Name="View_1" EntityType="Self.View_1" />
           <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Client" EntitySet="Client" />
@@ -772,6 +750,7 @@
             <End Role="Service" EntitySet="Service" />
             <End Role="ServicePhoto" EntitySet="ServicePhoto" />
           </AssociationSet>
+          <EntitySet Name="Svodka" EntityType="autoserviceModel.Svodka" />
         </EntityContainer>
         <Association Name="FK_ClientService_Service">
           <End Type="autoserviceModel.Service" Role="Service" Multiplicity="1" />
@@ -797,6 +776,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Svodka">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="RegistrationDate" />
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Expr1" Type="DateTime" Precision="3" />
+          <Property Name="Expr2" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -931,22 +930,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="View_1">
-            <EntityTypeMapping TypeName="autoserviceModel.View_1">
-              <MappingFragment StoreEntitySet="View_1">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AttachedProduct" TypeName="autoserviceModel.AttachedProduct" StoreEntitySet="AttachedProduct">
             <EndProperty Name="Product">
               <ScalarProperty Name="ID" ColumnName="MainProductID" />
@@ -970,6 +953,23 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище autoserviceModel.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище autoserviceModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище autoserviceModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Svodka">
+            <EntityTypeMapping TypeName="autoserviceModel.Svodka">
+              <MappingFragment StoreEntitySet="Svodka">
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

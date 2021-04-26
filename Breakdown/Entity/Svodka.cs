@@ -12,17 +12,18 @@ namespace Breakdown.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class View_1
+    public partial class Svodka
     {
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Patronymic { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
-        public System.DateTime RegistrationDate { get; set; }
         public string Email { get; set; }
+        public System.DateTime RegistrationDate { get; set; }
         public string Phone { get; set; }
-        public string GenderCode { get; set; }
-        public System.DateTime StartTime { get; set; }
+        public string Name { get; set; }
+        public Nullable<System.DateTime> Expr1 { get; set; }
+        public Nullable<int> Expr2 { get; set; }
     }
 }

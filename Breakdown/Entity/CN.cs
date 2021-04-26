@@ -8,6 +8,6 @@ namespace Breakdown.Entity
 {
     public static class CN
     {
-        public static Entities content = new Entities();
+        public static Entities context = new Entities();
     }
 }
