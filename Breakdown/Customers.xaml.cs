@@ -17,7 +17,6 @@ using Breakdown.Entity;
 namespace Breakdown
 {
     ///
-    /// половину кода писал кузин андрей, не бейте Юлю ногами плз
     /// 
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -95,8 +94,8 @@ namespace Breakdown
             var Svodsourse = CN.context.Svodka.ToList();
             ListClient.ItemsSource = Svodsourse;
 
-            var Sersourse = CN.context.Service.ToList();
-            ListService.ItemsSource = Sersourse;
+            //var Sersourse = CN.context.Service.ToList();
+            //ListService.ItemsSource = Sersourse;
             Rows_label.Content = RowsShowed + " из " + RowAll;
         }
 
