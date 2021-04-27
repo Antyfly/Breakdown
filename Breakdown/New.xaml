@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Breakdown"
         mc:Ignorable="d"
-         Title="AddEmployee" Height="510" Width="300" Icon="/Image/service_logo.ico" FontFamily="Tw Cen MT" FontSize="16" ResizeMode="NoResize" Foreground="Black" WindowStartupLocation="CenterScreen">
+         Title="new" Height="510" Width="300" Icon="/Image/service_logo.ico" FontFamily="Tw Cen MT" FontSize="16" ResizeMode="NoResize" Foreground="Black" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
