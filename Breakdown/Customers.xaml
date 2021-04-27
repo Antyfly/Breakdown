@@ -31,7 +31,14 @@
                         <Button x:Name="new" Background="#FFFF9C1A" Click="new_Click" Content="NEW ClIENT" HorizontalAlignment="Right" Margin="0,0,0.4,5.2" Width="62"/>
                         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation ="Horizontal">
                             <Label Content="Количество записей"/>
-                            <ComboBox HorizontalAlignment="Stretch" Width="50" VerticalAlignment="Top" x:Name="RowsBox" SelectionChanged="RowsBox_SelectionChanged" />
+                            <ComboBox HorizontalAlignment="Stretch" Width="50" Height="25" VerticalAlignment="Top" x:Name="RowsBox" SelectionChanged="RowsBox_SelectionChanged"/>
+                            <Label Content="Фамилия: "/>
+                            <TextBox x:Name="Poisk_TB" Width="150" Height="25"  VerticalAlignment="Top" Background="#FFFFFFE1" FontSize="16" VerticalContentAlignment="Center"/>
+                            <Label Content="Email: "/>
+                            <TextBox x:Name="Email_TB" Width="150" Height="25"  VerticalAlignment="Top" Background="#FFFFFFE1" FontSize="16" VerticalContentAlignment="Center" />
+                            <Label Content="Телефон: "/>
+                            <TextBox x:Name="Phone_TB" Width="150" Height="25"  VerticalAlignment="Top" Background="#FFFFFFE1" FontSize="16" VerticalContentAlignment="Center"/>
+                            <Button x:Name="Poisk" Content="Найти"  Click="Poisk_Click"   Width="62" Background="#FFFF9C1A" Height="25" VerticalAlignment="Top"/>
                         </StackPanel>
                         <ListView x:Name="List" MouseDoubleClick="List_MouseDoubleClick" Margin="0,22.8,0.4,0" Grid.Row="1">
                             <ListView.View>

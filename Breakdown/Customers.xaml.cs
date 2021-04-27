@@ -144,5 +144,15 @@ namespace Breakdown
             Page = 0;
             Update(); 
         }
+
+        private void Poisk_Click(object sender, RoutedEventArgs e)
+        {
+            
+            List.ItemsSource = CN.context.Client.Where(i => i.FirstName.ToLower() == Poisk_TB.Text || i.Email.ToLower() == Email_TB.Text || i.Phone.ToLower() == Phone_TB.Text).ToList();
+            if (Poisk_TB.Text == "" && Email_TB.Text == "" && Phone_TB.Text=="")
+            {
+                Update();
+            }
+        }
     }
 }

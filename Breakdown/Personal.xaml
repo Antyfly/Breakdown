@@ -56,10 +56,14 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Border Height="auto" Width="auto">
-                                    <Image>
+                                <Border Height="auto" Width="auto" HorizontalAlignment="Right">
+                                    <Image VerticalAlignment="Bottom" HorizontalAlignment="Right">
                                         <Image.Source>
-                                            <Binding Path="PhotoPath"/>
+                                            <Binding Path="PhotoPath">
+                                                <Binding.TargetNullValue>
+                                                    <ImageSource>/Image/zaglushka.png</ImageSource>
+                                                </Binding.TargetNullValue>
+                                                </Binding>
                                         </Image.Source>
                                     </Image>
                                 </Border>
