@@ -32,13 +32,8 @@
                         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation ="Horizontal">
                             <Label Content="Количество записей"/>
                             <ComboBox HorizontalAlignment="Stretch" Width="50" Height="25" VerticalAlignment="Top" x:Name="RowsBox" SelectionChanged="RowsBox_SelectionChanged"/>
-                            <Label Content="Фамилия: "/>
-                            <TextBox x:Name="Poisk_TB" Width="150" Height="25"  VerticalAlignment="Top" Background="#FFFFFFE1" FontSize="16" VerticalContentAlignment="Center"/>
-                            <Label Content="Email: "/>
-                            <TextBox x:Name="Email_TB" Width="150" Height="25"  VerticalAlignment="Top" Background="#FFFFFFE1" FontSize="16" VerticalContentAlignment="Center" />
-                            <Label Content="Телефон: "/>
-                            <TextBox x:Name="Phone_TB" Width="150" Height="25"  VerticalAlignment="Top" Background="#FFFFFFE1" FontSize="16" VerticalContentAlignment="Center"/>
-                            <Button x:Name="Poisk" Content="Найти"  Click="Poisk_Click"   Width="62" Background="#FFFF9C1A" Height="25" VerticalAlignment="Top"/>
+                            <Label Content="Поиск: "/>
+                            <TextBox x:Name="Poisk_TB" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" TextChanged="Poisk_TB_TextChanged" Width="150" Height="25"  VerticalAlignment="Top" Background="#FFFFFFE1" FontSize="16" VerticalContentAlignment="Center"/>
                         </StackPanel>
                         <ListView x:Name="List" MouseDoubleClick="List_MouseDoubleClick" Margin="0,22.8,0.4,0" Grid.Row="1">
                             <ListView.View>

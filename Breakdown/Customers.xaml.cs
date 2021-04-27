@@ -27,6 +27,7 @@ namespace Breakdown
         public int RowsShowed { get; set; } = 0;
         public int RowsPlus { get; set; } = 0;
         public int Page { get; set; } = 0;
+        public string Search { get; set; } = "";
 
         public Customers()
         {
@@ -40,12 +41,16 @@ namespace Breakdown
 
             };
             Update();
-
         }
         public void Update()
         {
             var datasourse = CN.context.Client.ToList();
             RowAll = datasourse.Count();
+            if (string.IsNullOrEmpty(Search) != true)
+            {
+                string search = Search.ToLower();
+                datasourse = datasourse.Where(i => i.FirstName.ToLower().Contains(search) || i.Email.ToLower().Contains(search) || i.Phone.ToLower().Contains(search) == true).ToList();
+            }
             switch (RowsBox.SelectedIndex)
             {
                 case 0:
@@ -87,8 +92,6 @@ namespace Breakdown
             }
            
             RowsShowed = datasourse.Count();
-
-           
             List.ItemsSource = datasourse;
 
             var Svodsourse = CN.context.Svodka.ToList();
@@ -97,6 +100,8 @@ namespace Breakdown
             //var Sersourse = CN.context.Service.ToList();
             //ListService.ItemsSource = Sersourse;
             Rows_label.Content = RowsShowed + " из " + RowAll;
+               /* string search = Search.ToLower();
+                datasourse = datasourse.Where(i => i.FirstName.ToLower().Contains(search) || i.Email.ToLower().Contains(search) || i.Phone.ToLower().Contains(search) == true).ToList();*/
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -115,12 +120,7 @@ namespace Breakdown
 
         private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-        }
-
-        private void OffersList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
+            Update();
         }
 
         private void List_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -145,14 +145,9 @@ namespace Breakdown
             Update(); 
         }
 
-        private void Poisk_Click(object sender, RoutedEventArgs e)
+        private void Poisk_TB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-            List.ItemsSource = CN.context.Client.Where(i => i.FirstName.ToLower() == Poisk_TB.Text || i.Email.ToLower() == Email_TB.Text || i.Phone.ToLower() == Phone_TB.Text).ToList();
-            if (Poisk_TB.Text == "" && Email_TB.Text == "" && Phone_TB.Text=="")
-            {
-                Update();
-            }
+            Update();
         }
     }
 }
